@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Skillsheet API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://emotional.jp/demo/api"
+    }
+  ],
+  "paths": {
+    "/profile.php": {
+      "get": {
+        "summary": "スキルシート情報の取得",
+        "operationId": "getProfile",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "summary": { "type": "string" },
+          "headline": { "type": "string" },
+          "location": { "type": "string" },
+          "remote": { "type": "boolean" },
+          "skills": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "recentProject": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "period": { "type": "string" },
+              "techStack": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "ContactRequest": {
+        "type": "object",
+        "required": ["name", "email", "message"],
+        "properties": {
+          "name": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "message": { "type": "string" }
+        }
+      }
+    }
+  }
+}
