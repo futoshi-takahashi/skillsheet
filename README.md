@@ -1,2 +1,2 @@
-# skillsheet
+# スキルシート
 React+TypeScript製スキルシート
