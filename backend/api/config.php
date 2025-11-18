@@ -1,6 +1,27 @@
 <?php
 declare(strict_types=1);
 
+// ====== CORS設定（開発中だけ localhost を許可） ======
+$allowedOrigins = [
+    'http://localhost:5173',          // Vite dev server
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+if ($origin !== '' && in_array($origin, $allowedOrigins, true)) {
+    header("Access-Control-Allow-Origin: {$origin}");
+    header('Vary: Origin');
+    // 必要ならクッキーなどを使うとき
+    // header('Access-Control-Allow-Credentials: true');
+}
+
+// Preflight(OPTIONS)への対応（POST JSON 用）
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    http_response_code(204);
+    exit;
+}
+
 // エラー表示（本番ではOFF）
 ini_set('display_errors', '1');
 error_reporting(E_ALL);
