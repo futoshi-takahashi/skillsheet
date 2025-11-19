@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import type { Profile } from '../api/Profile'
 import { fetchProfile } from '../api/fetchProfile'
 
+/**
+ * プロフィール取得の状態を表す型
+ *
+ * @property status - 取得状態 ('idle' | 'loading' | 'success' | 'error')
+ * @property data - 取得成功時のプロフィールデータ (success時のみ)
+ * @property error - エラー情報 (error時のみ)
+ */
 export type UseProfileState =
   | { status: 'idle'; data: null; error: null }
   | { status: 'loading'; data: null; error: null }
@@ -14,33 +21,53 @@ const initial: UseProfileState = {
   error: null
 }
 
-const load = async ({
-  setState,
-  canceled
-}: {
-  setState: React.Dispatch<React.SetStateAction<UseProfileState>>
-  canceled: React.RefObject<boolean>
-}) => {
-  if (canceled.current) return
-  setState({ status: 'loading', data: null, error: null })
-  try {
-    const profile = await fetchProfile()
-    setState({ status: 'success', data: profile, error: null })
-  } catch (e) {
-    const error =
-      e instanceof Error ? e : new Error('プロフィール取得に失敗しました')
-    setState({ status: 'error', data: null, error })
-  } finally {
-    canceled.current = true
-  }
-}
-
+/**
+ * プロフィールデータを取得するカスタムhook
+ *
+ * マウント時に自動的にプロフィールデータの取得を開始します。
+ * アンマウント時には進行中のリクエストをキャンセルし、
+ * アンマウント後の状態更新を防ぎます。
+ *
+ * @returns プロフィール取得の状態 (idle -> loading -> success | error)
+ *
+ * @example
+ * ```tsx
+ * const ProfileComponent = () => {
+ *   const state = useProfile()
+ *
+ *   if (state.status === 'loading') return <div>Loading...</div>
+ *   if (state.status === 'error') return <div>Error: {state.error.message}</div>
+ *   if (state.status === 'success') return <div>{state.data.name}</div>
+ *   return null
+ * }
+ * ```
+ */
 export const useProfile = (): UseProfileState => {
   const [state, setState] = useState<UseProfileState>(initial)
-  const canceled = useRef(false)
+  const isMounted = useRef(true)
 
   useEffect(() => {
-    load({ setState, canceled })
+    const loadProfile = async () => {
+      setState({ status: 'loading', data: null, error: null })
+      try {
+        const profile = await fetchProfile()
+        if (isMounted.current) {
+          setState({ status: 'success', data: profile, error: null })
+        }
+      } catch (e) {
+        const error =
+          e instanceof Error ? e : new Error('プロフィール取得に失敗しました')
+        if (isMounted.current) {
+          setState({ status: 'error', data: null, error })
+        }
+      }
+    }
+
+    loadProfile()
+
+    return () => {
+      isMounted.current = false
+    }
   }, [])
 
   return state
