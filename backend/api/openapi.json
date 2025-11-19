@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Skillsheet API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://emotional.jp/demo/api"
+    }
+  ],
+  "paths": {
+    "/profile.php": {
+      "get": {
+        "summary": "スキルシート情報の取得",
+        "operationId": "getProfile",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Profile": {
+        "type": "object",
+        "description": "スキルシート用プロフィール情報",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "英語で氏名",
+            "example": "Taro Yamada"
+          },
+          "nameJp": {
+            "type": "string",
+            "description": "氏名",
+            "example": "山田 太郎"
+          },
+          "skills": {
+            "type": "array",
+            "description": "保有技能の一覧",
+            "items": {
+              "type": "string",
+              "example": "React/ TypeScript"
+            }
+          },
+          "summary": {
+            "type": "array",
+            "description": "経歴要約および自己PR（1行ごとに1要素）",
+            "items": {
+              "type": "string",
+              "example": "ソフトエンジニアとしての経歴は..."
+            }
+          },
+          "operatingSystems": {
+            "type": "array",
+            "description": "使用可能なOSの一覧",
+            "items": {
+              "type": "string",
+              "example": "Mac"
+            }
+          },
+          "workHistory": {
+            "type": "array",
+            "description": "職務経歴の一覧",
+            "items": {
+              "$ref": "#/components/schemas/WorkHistoryItem"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "nameJp",
+          "skills",
+          "summary",
+          "operatingSystems",
+          "workHistory"
+        ]
+      },
+      "WorkHistoryItem": {
+        "type": "object",
+        "description": "職務経歴の1件分",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "業務内容タイトル",
+            "example": "オンライン予約システムのフロントエンド開発。"
+          },
+          "details": {
+            "type": "array",
+            "description": "業務内容詳細（1行ごとに1要素）",
+            "items": {
+              "type": "string",
+              "example": "言語はTypeScriptでフレームワークとしてReactを使用。"
+            }
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "description": "参画開始日（YYYY-MM-DD）",
+            "example": "2022-06-01"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "description": "参画終了日（YYYY-MM-DD）",
+            "example": "2025-08-31"
+          },
+          "phases": {
+            "type": "array",
+            "description": "担当した作業工程の一覧",
+            "items": {
+              "type": "string",
+              "example": "詳細設計"
+            }
+          },
+          "languages": {
+            "type": "array",
+            "description": "使用言語の一覧",
+            "items": {
+              "type": "string",
+              "example": "TypeScript"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "details",
+          "startDate",
+          "endDate",
+          "phases",
+          "languages"
+        ]
+      }
+    }
+  }
+}
