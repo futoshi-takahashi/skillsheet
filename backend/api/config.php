@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 // ====== CORS設定（開発中だけ localhost を許可） ======
 $allowedOrigins = [
-    'http://localhost:5173',          // Vite dev server
+    'http://localhost:5173',          
+    'https://emotional.jp',          
+    'https://www.emotional.jp'
 ];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
