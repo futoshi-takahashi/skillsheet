@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Profile } from '../api/Profile'
 import { fetchProfile } from '../api/fetchProfile'
 
-type UseProfileState =
+export type UseProfileState =
   | { status: 'idle'; data: null; error: null }
   | { status: 'loading'; data: null; error: null }
   | { status: 'success'; data: Profile; error: null }
