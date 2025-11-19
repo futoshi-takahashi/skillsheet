@@ -1,5 +1,6 @@
 import { useProfile } from '../hooks/useProfile'
-import { LoadingUI, ErrorUI, SuccessUI } from './Presentational'
+import { LoadingUI, ErrorUI } from './Presentational'
+import { ProfileLayout } from '../ProfileLayout'
 
 export const Container = () => {
   const state = useProfile()
@@ -12,5 +13,5 @@ export const Container = () => {
     return <ErrorUI message={state.error.message} />
   }
 
-  return <SuccessUI data={state.data} />
+  return <ProfileLayout profile={state.data} />
 }

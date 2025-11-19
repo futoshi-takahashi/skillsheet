@@ -8,9 +8,11 @@ vi.mock('./Presentational', () => ({
   LoadingUI: () => <div data-testid="loading-ui">Loading...</div>,
   ErrorUI: ({ message }: { message: string }) => (
     <div data-testid="error-ui">{message}</div>
-  ),
-  SuccessUI: ({ data }: { data: unknown }) => (
-    <div data-testid="success-ui">{JSON.stringify(data)}</div>
+  )
+}))
+vi.mock('../ProfileLayout', () => ({
+  ProfileLayout: ({ profile }: { profile: unknown }) => (
+    <div data-testid="profile-layout">{JSON.stringify(profile)}</div>
   )
 }))
 
@@ -74,7 +76,7 @@ describe('Container', () => {
   })
 
   describe('useProfileがsuccess状態を返すと', () => {
-    it('SuccessUIがプロフィールデータと共に表示される', () => {
+    it('ProfileLayoutがプロフィールデータと共に表示される', () => {
       const profileData = { id: '123', name: '山田太郎' }
       const state: UseProfileState = {
         status: 'success',
@@ -85,9 +87,9 @@ describe('Container', () => {
 
       render(<Container />)
 
-      const successUI = screen.getByTestId('success-ui')
-      expect(successUI).toBeInTheDocument()
-      expect(successUI).toHaveTextContent(JSON.stringify(profileData))
+      const profileLayout = screen.getByTestId('profile-layout')
+      expect(profileLayout).toBeInTheDocument()
+      expect(profileLayout).toHaveTextContent(JSON.stringify(profileData))
     })
   })
 })
