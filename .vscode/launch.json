@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Vitest",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/frontend/node_modules/vitest/vitest.mjs",
+      "args": ["watch", "${file}", "--inspect-brk", "--no-file-parallelism"],
+      "cwd": "${workspaceRoot}/frontend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
