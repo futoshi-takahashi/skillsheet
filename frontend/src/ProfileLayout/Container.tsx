@@ -22,7 +22,8 @@ export const Container = ({ profile }: Props) => {
 
   const workHistoryProps = {
     items: profile.workHistory.map(work => ({
-      period: `${work.startDate} - ${work.endDate}`,
+      startDate: work.startDate,
+      endDate: work.endDate,
       title: work.title,
       details: work.details,
       phases: work.phases,

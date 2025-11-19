@@ -55,7 +55,7 @@ describe('Container', () => {
   })
 
   describe('workHistoryのstartDateとendDateを渡すと', () => {
-    it('period文字列に整形される', () => {
+    it('startDateとendDateがそのまま渡される', () => {
       const profile: Profile = {
         createdDate: '2025-11-19',
         name: 'Taro Yamada',
@@ -66,11 +66,19 @@ describe('Container', () => {
         workHistory: [
           {
             title: 'プロジェクトA',
-            details: ['詳細'],
+            details: ['詳細A'],
             startDate: '2020-01-01',
             endDate: '2023-12-31',
             phases: ['設計'],
             languages: ['TypeScript']
+          },
+          {
+            title: 'プロジェクトB',
+            details: ['詳細B'],
+            startDate: '2024-01-01',
+            endDate: '2025-12-31',
+            phases: ['実装'],
+            languages: ['JavaScript']
           }
         ]
       }
@@ -81,11 +89,17 @@ describe('Container', () => {
       )
       const props = JSON.parse(presentationalDiv?.textContent || '{}')
 
-      expect(props.workHistory.items[0].period).toBe('2020-01-01 - 2023-12-31')
+      // 配列の順序は元のまま（ソートはProfileWorkHistory/Containerで行われる）
+      expect(props.workHistory.items[0].startDate).toBe('2020-01-01')
+      expect(props.workHistory.items[0].endDate).toBe('2023-12-31')
       expect(props.workHistory.items[0].title).toBe('プロジェクトA')
-      expect(props.workHistory.items[0].details).toEqual(['詳細'])
+      expect(props.workHistory.items[0].details).toEqual(['詳細A'])
       expect(props.workHistory.items[0].phases).toEqual(['設計'])
       expect(props.workHistory.items[0].languages).toEqual(['TypeScript'])
+
+      expect(props.workHistory.items[1].startDate).toBe('2024-01-01')
+      expect(props.workHistory.items[1].endDate).toBe('2025-12-31')
+      expect(props.workHistory.items[1].title).toBe('プロジェクトB')
     })
   })
 })

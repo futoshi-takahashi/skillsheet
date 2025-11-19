@@ -13,8 +13,7 @@ export type WorkHistoryProps = {
 export const Presentational = ({ items }: WorkHistoryProps) => (
   <section>
     <h2 className="text-2xl font-semibold text-slate-200 mb-6 flex items-center">
-      <span className="text-cyan-400 mr-2">03.</span>
-      Work History
+      実績一覧
     </h2>
     <div className="space-y-12">
       {items.map((work, index) => (
@@ -36,7 +35,9 @@ export const Presentational = ({ items }: WorkHistoryProps) => (
             ))}
           </div>
           <div className="mb-3">
-            <h4 className="text-sm font-medium text-slate-300 mb-2">Phases</h4>
+            <h4 className="text-sm font-medium text-slate-300 mb-2">
+              作業工程
+            </h4>
             <div className="flex flex-wrap gap-2">
               {work.phases.map((phase, idx) => (
                 <span
@@ -49,14 +50,12 @@ export const Presentational = ({ items }: WorkHistoryProps) => (
             </div>
           </div>
           <div>
-            <h4 className="text-sm font-medium text-slate-300 mb-2">
-              Languages
-            </h4>
+            <h4 className="text-sm font-medium text-slate-300 mb-2">言語</h4>
             <div className="flex flex-wrap gap-2">
               {work.languages.map((lang, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 bg-slate-800/30 text-cyan-300 rounded text-xs border border-slate-700/50"
+                  className="px-3 py-1 bg-slate-800/30 text-slate-400 rounded text-xs border border-slate-700/50"
                 >
                   {lang}
                 </span>
