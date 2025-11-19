@@ -34,6 +34,11 @@ export interface components {
              */
             createdDate: string;
             /**
+             * @description 英語で氏名
+             * @example Taro Yamada
+             */
+            name: string;
+            /**
              * @description 氏名のふりがな
              * @example やまだ たろう
              */
@@ -42,7 +47,7 @@ export interface components {
              * @description 氏名
              * @example 山田 太郎
              */
-            name: string;
+            nameJp: string;
             /** @description 保有技能の一覧 */
             skills: string[];
             /** @description 経歴要約および自己PR（1行ごとに1要素） */

@@ -90,8 +90,9 @@
         },
         "required": [
           "createdDate",
-          "furigana",
           "name",
+          "furigana",
+          "nameJp",
           "skills",
           "summary",
           "operatingSystems",
