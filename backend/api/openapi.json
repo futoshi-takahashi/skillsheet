@@ -46,11 +46,6 @@
             "description": "英語で氏名",
             "example": "Taro Yamada"
           },
-          "furigana": {
-            "type": "string",
-            "description": "氏名のふりがな",
-            "example": "やまだ たろう"
-          },
           "nameJp": {
             "type": "string",
             "description": "氏名",
@@ -91,7 +86,6 @@
         "required": [
           "createdDate",
           "name",
-          "furigana",
           "nameJp",
           "skills",
           "summary",

@@ -8,31 +8,30 @@ type Props = {
 export const Container = ({ profile }: Props) => {
   const headerProps = {
     name: profile.name,
-    nameJp: profile.nameJp,
-    furigana: profile.furigana,
+    nameJp: profile.nameJp
   }
 
   const summaryProps = {
-    items: profile.summary,
+    items: profile.summary
   }
 
   const skillsProps = {
     skills: profile.skills,
-    operatingSystems: profile.operatingSystems,
+    operatingSystems: profile.operatingSystems
   }
 
   const workHistoryProps = {
-    items: profile.workHistory.map((work) => ({
+    items: profile.workHistory.map(work => ({
       period: `${work.startDate} - ${work.endDate}`,
       title: work.title,
       details: work.details,
       phases: work.phases,
-      languages: work.languages,
-    })),
+      languages: work.languages
+    }))
   }
 
   const footerProps = {
-    createdDate: profile.createdDate,
+    createdDate: profile.createdDate
   }
 
   return (

@@ -39,11 +39,6 @@ export interface components {
              */
             name: string;
             /**
-             * @description 氏名のふりがな
-             * @example やまだ たろう
-             */
-            furigana: string;
-            /**
              * @description 氏名
              * @example 山田 太郎
              */

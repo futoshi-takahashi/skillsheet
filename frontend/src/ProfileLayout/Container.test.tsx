@@ -6,7 +6,7 @@ import type { Profile } from '../api/Profile'
 vi.mock('./Presentational', () => ({
   Presentational: (props: any) => (
     <div data-testid="presentational">{JSON.stringify(props)}</div>
-  ),
+  )
 }))
 
 describe('Container', () => {
@@ -15,7 +15,6 @@ describe('Container', () => {
       const profile: Profile = {
         createdDate: '2025-11-19',
         name: 'Taro Yamada',
-        furigana: 'やまだ たろう',
         nameJp: '山田 太郎',
         skills: ['React', 'TypeScript'],
         summary: ['エンジニア歴10年'],
@@ -27,9 +26,9 @@ describe('Container', () => {
             startDate: '2020-01-01',
             endDate: '2023-12-31',
             phases: ['設計', '実装'],
-            languages: ['TypeScript'],
-          },
-        ],
+            languages: ['TypeScript']
+          }
+        ]
       }
 
       const { container } = render(<Container profile={profile} />)
@@ -40,18 +39,17 @@ describe('Container', () => {
 
       expect(props.header).toEqual({
         name: 'Taro Yamada',
-        nameJp: '山田 太郎',
-        furigana: 'やまだ たろう',
+        nameJp: '山田 太郎'
       })
       expect(props.summary).toEqual({
-        items: ['エンジニア歴10年'],
+        items: ['エンジニア歴10年']
       })
       expect(props.skills).toEqual({
         skills: ['React', 'TypeScript'],
-        operatingSystems: ['Mac', 'Windows'],
+        operatingSystems: ['Mac', 'Windows']
       })
       expect(props.footer).toEqual({
-        createdDate: '2025-11-19',
+        createdDate: '2025-11-19'
       })
     })
   })
@@ -61,7 +59,6 @@ describe('Container', () => {
       const profile: Profile = {
         createdDate: '2025-11-19',
         name: 'Taro Yamada',
-        furigana: 'やまだ たろう',
         nameJp: '山田 太郎',
         skills: [],
         summary: [],
@@ -73,9 +70,9 @@ describe('Container', () => {
             startDate: '2020-01-01',
             endDate: '2023-12-31',
             phases: ['設計'],
-            languages: ['TypeScript'],
-          },
-        ],
+            languages: ['TypeScript']
+          }
+        ]
       }
 
       const { container } = render(<Container profile={profile} />)
