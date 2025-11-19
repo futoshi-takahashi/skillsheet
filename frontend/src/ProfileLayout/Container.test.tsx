@@ -13,7 +13,6 @@ describe('Container', () => {
   describe('Profileデータを渡すと', () => {
     it('各セクションのpropsに整形してPresentationalに渡される', () => {
       const profile: Profile = {
-        createdDate: '2025-11-19',
         name: 'Taro Yamada',
         nameJp: '山田 太郎',
         skills: ['React', 'TypeScript'],
@@ -48,16 +47,12 @@ describe('Container', () => {
         skills: ['React', 'TypeScript'],
         operatingSystems: ['Mac', 'Windows']
       })
-      expect(props.footer).toEqual({
-        createdDate: '2025-11-19'
-      })
     })
   })
 
   describe('workHistoryのstartDateとendDateを渡すと', () => {
     it('startDateとendDateがそのまま渡される', () => {
       const profile: Profile = {
-        createdDate: '2025-11-19',
         name: 'Taro Yamada',
         nameJp: '山田 太郎',
         skills: [],

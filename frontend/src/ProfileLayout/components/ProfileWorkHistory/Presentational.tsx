@@ -1,4 +1,4 @@
-export type WorkHistoryItemProps = {
+type ItemProps = {
   period: string
   title: string
   details: string[]
@@ -6,11 +6,11 @@ export type WorkHistoryItemProps = {
   languages: string[]
 }
 
-export type WorkHistoryProps = {
-  items: WorkHistoryItemProps[]
+type Props = {
+  items: ItemProps[]
 }
 
-export const Presentational = ({ items }: WorkHistoryProps) => (
+export const Presentational = ({ items }: Props) => (
   <section>
     <h2 className="text-2xl font-semibold text-slate-200 mb-6 flex items-center">
       実績一覧

@@ -1,9 +1,23 @@
-export type FooterProps = {
-  createdDate: string
-}
-
-export const Presentational = ({ createdDate }: FooterProps) => (
-  <footer className="mt-16 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
-    Created: {createdDate}
+export const Presentational = () => (
+  <footer className="mt-16 pt-4 border-t border-slate-800 text-slate-500 text-sm text-right">
+    デザイン参考:
+    <a
+      href="https://brittanychiang.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-cyan-400 hover:text-cyan-300 underline ml-1"
+    >
+      Brittany Chiangさんのスキルシート
+    </a>
+    <br />
+    このページのソースコード:
+    <a
+      href="https://github.com/futoshi-takahashi/skillsheet"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-cyan-400 hover:text-cyan-300 underline ml-1"
+    >
+      github.com
+    </a>
   </footer>
 )

@@ -10,7 +10,7 @@ type WorkHistoryItem = {
   languages: string[]
 }
 
-type Props = {
+export type Props = {
   items: WorkHistoryItem[]
 }
 

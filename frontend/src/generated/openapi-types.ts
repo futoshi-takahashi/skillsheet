@@ -28,12 +28,6 @@ export interface components {
         /** @description スキルシート用プロフィール情報 */
         Profile: {
             /**
-             * Format: date
-             * @description プロフィールJSONの作成日（YYYY-MM-DD）
-             * @example 2025-11-19
-             */
-            createdDate: string;
-            /**
              * @description 英語で氏名
              * @example Taro Yamada
              */

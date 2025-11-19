@@ -1,28 +1,27 @@
 import { ProfileHeader } from './components/ProfileHeader'
 import { ProfileSummary } from './components/ProfileSummary'
 import { ProfileSkills } from './components/ProfileSkills'
-import { ProfileWorkHistory } from './components/ProfileWorkHistory'
+import {
+  ProfileWorkHistory,
+  type WorkHistoryProps
+} from './components/ProfileWorkHistory'
 import { ProfileFooter } from './components/ProfileFooter'
 import type { HeaderProps } from './components/ProfileHeader/Presentational'
 import type { SummaryProps } from './components/ProfileSummary/Presentational'
 import type { SkillsProps } from './components/ProfileSkills/Presentational'
-import type { WorkHistoryProps } from './components/ProfileWorkHistory/Presentational'
-import type { FooterProps } from './components/ProfileFooter/Presentational'
 
 type Props = {
   header: HeaderProps
   summary: SummaryProps
   skills: SkillsProps
   workHistory: WorkHistoryProps
-  footer: FooterProps
 }
 
 export const Presentational = ({
   header,
   summary,
   skills,
-  workHistory,
-  footer,
+  workHistory
 }: Props) => (
   <div className="mx-auto max-w-screen-xl px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-0">
     <div className="lg:flex lg:justify-between lg:gap-4">
@@ -36,7 +35,7 @@ export const Presentational = ({
         <ProfileSummary {...summary} />
         <ProfileSkills {...skills} />
         <ProfileWorkHistory {...workHistory} />
-        <ProfileFooter {...footer} />
+        <ProfileFooter />
       </div>
     </div>
   </div>

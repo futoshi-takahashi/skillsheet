@@ -35,12 +35,6 @@
         "type": "object",
         "description": "スキルシート用プロフィール情報",
         "properties": {
-          "createdDate": {
-            "type": "string",
-            "format": "date",
-            "description": "プロフィールJSONの作成日（YYYY-MM-DD）",
-            "example": "2025-11-19"
-          },
           "name": {
             "type": "string",
             "description": "英語で氏名",
@@ -84,7 +78,6 @@
           }
         },
         "required": [
-          "createdDate",
           "name",
           "nameJp",
           "skills",

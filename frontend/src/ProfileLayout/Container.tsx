@@ -31,17 +31,12 @@ export const Container = ({ profile }: Props) => {
     }))
   }
 
-  const footerProps = {
-    createdDate: profile.createdDate
-  }
-
   return (
     <Presentational
       header={headerProps}
       summary={summaryProps}
       skills={skillsProps}
       workHistory={workHistoryProps}
-      footer={footerProps}
     />
   )
 }
