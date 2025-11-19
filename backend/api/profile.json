@@ -1,0 +1,24 @@
+{
+  "createdDate": "2025-11-19",
+  "furigana": "たかはし　ふとし",
+  "name": "高橋　太",
+  "skills": ["React/ TypeScript(5年以上)", "HTML"],
+  "summary": [
+    "ソフトエンジニアとしての経歴は20年以上あります。",
+    "直近ではReact開発のフロントエンドエンジニアをしていました。"
+  ],
+  "operatingSystems": ["Mac", "Windows"],
+  "workHistory": [
+    {
+      "title": "半導体検査装置等のGUI仕様確定のためのブラウザで動作するモックアップをフロントエンドアプリケーションとして年間4~6案件作成",
+      "details": [
+        "2012年からHTMLとJavaScriptで構築していたが、2016年頃からHTMLとTypeScriptに移行。",
+        ""
+      ],
+      "startDate": "2022-06-01",
+      "endDate": "2025-08-31",
+      "phases": ["詳細設計"],
+      "languages": ["TypeScript"]
+    }
+  ]
+}

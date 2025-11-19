@@ -3,38 +3,29 @@ declare(strict_types=1);
 
 require __DIR__ . '/config.php';
 
-// 仮データ：あとで実際のスキルシート内容に寄せる
-$profile = [
-    'name' => 'futoshi takahashi',
-    'summary' => 'React／TypeScriptを中心にWebアプリケーション開発に10年以上従事。',
-    'headline' => 'フロントエンドエンジニア（React／TypeScript）',
-    'location' => '沖縄県那覇市',
-    'remote' => true,
-    'skills' => [
-        'TypeScript',
-        'React',
-        'Next.js',
-        'Vite',
-        'GraphQL',
-        'Node.js',
-        'C#',
-        'WPF',
-        'HALCON',
-    ],
-    'recentProject' => [
-        'title' => '病院のオンライン予約システム フロントエンド',
-        'period' => '2022-06 〜 2025-08',
-        'techStack' => [
-            'TypeScript',
-            'React',
-            'Next.js',
-            'Vite',
-            'GraphQL',
-            'Cognito',
-            'Heroku',
-            'GitHub Actions',
-        ],
-    ],
-];
+$profileJsonPath = __DIR__ . '/profile.json';
 
-json_response($profile);
+
+try {
+    if (!file_exists($profileJsonPath)) {
+        throw new RuntimeException('profile.json not found.');
+    }
+
+    $json = file_get_contents($profileJsonPath);
+    if ($json === false) {
+        throw new RuntimeException('Failed to read profile.json.');
+    }
+
+    // JSONとしてパース（連想配列にしたいのでtrue）
+    $profile = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+
+    // 正常系レスポンス
+    json_response($profile);
+} catch (Throwable $e) {
+    // 簡易エラーレスポンス（必要ならフォーマット変更OK）
+    http_response_code(500);
+    json_response([
+        'error' => 'Failed to load profile.',
+        'message' => $e->getMessage(),
+    ]);
+}
