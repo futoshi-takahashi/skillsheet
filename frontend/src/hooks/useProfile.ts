@@ -44,28 +44,39 @@ const initial: UseProfileState = {
  */
 export const useProfile = (): UseProfileState => {
   const [state, setState] = useState<UseProfileState>(initial)
-  const isMounted = useRef(true)
+  // アンマウント後のsetState実行を防ぐフラグ（メモリリーク対策）
+  const isMounted = useRef(false)
+  // StrictModeでの重複実行を防ぐフラグ（一回だけ実行制御）
+  const hasLoaded = useRef(false)
 
   useEffect(() => {
-    const loadProfile = async () => {
+    // 既に実行済みの場合は早期リターン（StrictMode対策）
+    if (hasLoaded.current) return
+    // useEffect実行時にマウント状態をtrueにリセット
+    isMounted.current = true
+    ;(async () => {
       setState({ status: 'loading', data: null, error: null })
       try {
         const profile = await fetchProfile()
+        // マウント中の場合のみ状態更新（メモリリーク防止）
         if (isMounted.current) {
           setState({ status: 'success', data: profile, error: null })
         }
       } catch (e) {
         const error =
           e instanceof Error ? e : new Error('プロフィール取得に失敗しました')
+        // マウント中の場合のみ状態更新（メモリリーク防止）
         if (isMounted.current) {
           setState({ status: 'error', data: null, error })
         }
+      } finally {
+        // fetchProfile完了後に実行済みフラグをON（重複実行防止）
+        hasLoaded.current = true
       }
-    }
-
-    loadProfile()
+    })()
 
     return () => {
+      // アンマウント時にフラグをfalseに設定
       isMounted.current = false
     }
   }, [])
