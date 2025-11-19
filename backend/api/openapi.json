@@ -41,15 +41,20 @@
             "description": "プロフィールJSONの作成日（YYYY-MM-DD）",
             "example": "2025-11-19"
           },
+          "name": {
+            "type": "string",
+            "description": "英語で氏名",
+            "example": "Taro Yamada"
+          },
           "furigana": {
             "type": "string",
             "description": "氏名のふりがな",
-            "example": "やまだ　たろう"
+            "example": "やまだ たろう"
           },
-          "name": {
+          "nameJp": {
             "type": "string",
             "description": "氏名",
-            "example": "山田　太郎"
+            "example": "山田 太郎"
           },
           "skills": {
             "type": "array",

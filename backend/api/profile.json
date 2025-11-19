@@ -1,7 +1,8 @@
 {
   "createdDate": "2025-11-19",
+  "name": "Futoshi Takahashi",
   "furigana": "たかはし　ふとし",
-  "name": "高橋　太",
+  "nameJp": "高橋　太",
   "skills": ["React/ TypeScript(5年以上)", "HTML", "CSS", "C#", "C言語"],
   "summary": [
     "ソフトエンジニアとしての経歴は20年以上あります。",
