@@ -3,7 +3,7 @@ export type HeaderProps = {
   nameJp: string
 }
 
-export const Presentational = ({ name, nameJp }: HeaderProps) => (
+export const Presentational = ({ name }: HeaderProps) => (
   <header className="mb-16 lg:mb-0">
     <h1 className="text-5xl font-bold text-slate-200 mb-2">{name}</h1>
     <div className="mt-3 flex items-center gap-3">
@@ -12,6 +12,6 @@ export const Presentational = ({ name, nameJp }: HeaderProps) => (
         沖縄在住のフロントエンド・エンジニア
       </h2>
     </div>
-    <p className="text-xl text-slate-400 mt-3 mb-1">{nameJp}のスキルシート</p>
+    <p className="text-xl text-slate-400 mt-3 mb-1">スキルシート</p>
   </header>
 )
